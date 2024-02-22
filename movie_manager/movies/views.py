@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 def create(request):
+    if request.method == 'POST':
+        print(request.POST)
+        
     return render(request, 'create.html')
 
 def edit(request):
