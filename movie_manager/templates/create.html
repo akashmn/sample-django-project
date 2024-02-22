@@ -3,4 +3,11 @@
 
 {% block content %}
     <h1>create</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        Title: <input type="text" name="title"><br>
+        Summary: <input type="text" name="summary"><br>
+        Year: <input type="text" name="year"><br>
+        <button type="submit">create</button>
+    </form>
 {% endblock %}
