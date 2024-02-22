@@ -5,15 +5,9 @@
     {% for movie_obj in movies %}
 
         <h1>Title : {{ movie_obj.title | upper }}</h1>
-        <img src="{% static 'images/' %}{{ movie_obj.img }}" alt="camera">
-        <p>Summary: {{ movie_obj.summary }}</p>
+        <p>Summary: {{ movie_obj.description }}</p>
         <h5>Year : {{ movie_obj.year }}</h5>
 
-        {% if movie_obj.success %}
-            <p>had a great box office collection</p>
-        {% else %}
-        <p>was a flopper</p>
-        {% endif %}
-
     {% endfor %}
+    
 {% endblock %}
