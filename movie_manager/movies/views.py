@@ -1,14 +1,27 @@
 from django.shortcuts import render
+from . models import Movie_info
 
+
+#create
 def create(request):
     if request.method == 'POST':
-        print(request.POST)
-        
+        title = request.POST['title']
+        year = request.POST['year']
+        description = request.POST['summary']
+        movie_obj = Movie_info(title=title, year=year, description=description)
+        movie_obj.save()
+
     return render(request, 'create.html')
 
+
+
+#edit
 def edit(request):
     return render(request, 'edit.html')
 
+
+
+#list
 def list(request):
 
     movie_data = { 
