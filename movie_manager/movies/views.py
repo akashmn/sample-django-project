@@ -29,6 +29,8 @@ def edit(request, pk):
 
 #delete
 def delete(request, pk):
+    instance = Movie_info.objects.get(id=pk)
+    instance.delete()
     movie_set = Movie_info.objects.all()  #fetching all the data from the database
     print(movie_set)
     return render(request, 'list.html', {'movies' : movie_set})
