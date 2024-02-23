@@ -2,12 +2,18 @@
 
 {% block content %}
     <h1>create</h1>
+    <h5>Insert the Movie details down below</h5>
 
     <form method="post" enctype="multipart/form-data">
+        <!-- Cross-Site Request Forgery (CSRF) -->
         {% csrf_token %} 
-        Title: <input type="text" name="title"><br>
-        Summary: <input type="text" name="summary"><br>
-        Year: <input type="text" name="year"><br>
+        
+        <!-- this will render the form fields as <p> tags -->
+        {{ frm.as_p }} 
+
         <button type="submit">create</button>
     </form>
 {% endblock %}
+
+
+
