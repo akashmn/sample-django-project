@@ -3,12 +3,13 @@
 {% block content %}
     <h1>List of Movie</h1>
     <table>
-        <tr><th>Title</th><th>Description</th><th>Year</th></tr>
+        <tr><th>Title</th><th>Description</th><th>Year</th><th>Edit/Delete</th></tr>
         {% for movie_obj in movies %}
             <tr>
-                <td><h3>{{ movie_obj.title | upper }}</h3></td>
+                <td><p>{{ movie_obj.title | upper }}</p></td>
                 <td><p>{{ movie_obj.description | default:"No data Available" }}</p></td>
                 <td><h5>{{ movie_obj.year }}</h5></td>
+                <td><a href="{% url 'edit' movie_obj.id %}">edit</a>/<a href="{% url 'delete' movie_obj.id %}">delete</a></td>
             </tr>
         {% endfor %}
     </table>

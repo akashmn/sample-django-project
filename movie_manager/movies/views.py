@@ -23,8 +23,15 @@ def create(request):
 
 
 #edit
-def edit(request):
+def edit(request, pk):
     return render(request, 'edit.html')
+
+
+#delete
+def delete(request, pk):
+    movie_set = Movie_info.objects.all()  #fetching all the data from the database
+    print(movie_set)
+    return render(request, 'list.html', {'movies' : movie_set})
 
 
 
