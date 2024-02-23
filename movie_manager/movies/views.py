@@ -24,13 +24,33 @@ def create(request):
 
 #edit
 def edit(request, pk):
-    return render(request, 'edit.html')
+    instance_to_be_edited = Movie_info.objects.get(pk=pk)
+    frm = MovieForm(request.POST, instance_to_be_edited)
+    if request.method == 'POST':
+        # ALTERNATIVE WAY 
+        # if frm.is_valid():
+        #     instance_to_be_edited.save()
+    
+        
+       title  = request.POST.get('title') #fetching data from the form after the edit
+       year = request.POST.get('year')
+       description = request.POST.get('description')
+       instance_to_be_edited.title = title
+       instance_to_be_edited.year = year
+       instance_to_be_edited.description = description
+       instance_to_be_edited.save()
+        
+    else:
+        frm = MovieForm(instance = instance_to_be_edited) #passing the instance to the form to be edited with the instance(existing) data 
+
+    return render(request, 'create.html',{'frm':frm})
+
 
 
 #delete
 def delete(request, pk):
     instance = Movie_info.objects.get(id=pk)
-    instance.delete()
+    instance.delete() #deleting the instance (current data)
     movie_set = Movie_info.objects.all()  #fetching all the data from the database
     print(movie_set)
     return render(request, 'list.html', {'movies' : movie_set})
