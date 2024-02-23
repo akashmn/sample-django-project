@@ -11,15 +11,12 @@ from .forms import MovieForm
 #create
 
 def create(request):
-
-    frm = MovieForm()
-
     if request.method == 'POST':
-        title = request.POST['title']
-        year = request.POST['year']
-        description = request.POST['description']
-        movie_obj = Movie_info(title=title, year=year, description=description)
-        movie_obj.save()
+        frm = MovieForm(request.POST)
+        if frm.is_valid():
+            frm.save()
+        else:
+            frm = MovieForm()      
 
     return render(request, 'create.html',{'frm':frm})
 
