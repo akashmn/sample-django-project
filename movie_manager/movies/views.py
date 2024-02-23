@@ -11,8 +11,8 @@ from .forms import MovieForm
 #create
 
 def create(request):
+    frm = MovieForm(request.POST)
     if request.method == 'POST':
-        frm = MovieForm(request.POST)
         if frm.is_valid():
             frm.save()
         else:
