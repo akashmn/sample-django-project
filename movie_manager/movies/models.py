@@ -6,6 +6,7 @@ class Movie_info(models.Model):
     title =  models.CharField(max_length=100)
     year = models.IntegerField(null = True)
     description = models.TextField()
+    poster = models.ImageField(upload_to='posters/', null = True)
 
 class Director(models.Model):
     name = models.CharField(max_length=100)

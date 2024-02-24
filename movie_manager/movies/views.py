@@ -11,10 +11,13 @@ from .forms import MovieForm
 #create
 
 def create(request):
-    frm = MovieForm(request.POST)
+    frm = MovieForm()  # Define frm outside of the if block
     if request.method == 'POST':
+        frm = MovieForm(request.POST, request.FILES)
+        print(request.FILES)
         if frm.is_valid():
             frm.save()
+            # return redirect('create')
         else:
             frm = MovieForm()      
 
